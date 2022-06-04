@@ -1,4 +1,4 @@
-const key = YOUTUBE;
+const key = `${process.env.YOUTUBE}`;
 const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API%20&type=video&videoCaption=closedCaption&key=${key}`;
 console.log(url)
 const xhttp = new XMLHttpRequest();
