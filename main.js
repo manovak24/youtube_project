@@ -1,5 +1,5 @@
-const key = `${process.env.YOUTUBE}`;
-const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API%20&type=video&videoCaption=closedCaption&key=${key}`;
+const youtubeKey = config.YOUTUBE_API;
+const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API%20&type=video&videoCaption=closedCaption&key=${youtubeKey}`;
 console.log(url)
 const xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
