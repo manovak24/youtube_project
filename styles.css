@@ -15,9 +15,18 @@ a {
     font-weight: 800;
 }
 
+h1 {
+    text-align: center;
+}
+
 h5 {
     font-weight: 400;
     color: gray;
+}
+
+form {
+    text-align: center;
+    margin: 10px auto;
 }
 
 .search-results {
