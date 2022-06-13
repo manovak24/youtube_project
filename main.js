@@ -1,7 +1,7 @@
 const searchTerm = document.getElementById('search-term');
 const submitBtn = document.getElementById('submit-btn');
 const div = document.getElementById('demo');
-const link = document.getElementById('link');
+const searchResults = document.getElementById('search-results');
 const youtubeKey = config.YOUTUBE_API;
 let youtubeSeachTerm = '';
 
@@ -19,17 +19,25 @@ submitBtn.addEventListener('click', (e) => {
             // console.log(xhttp.responseText);
 
             const dataSet = JSON.parse(xhttp.responseText)
-            console.log(dataSet)
-            const test = `https://www.youtube.com/watch?v=${dataSet.items[0].id.videoId}`;
-            link.href = test;
-            link.innerText = 'Hello World';
+            const data = dataSet.items;
+            console.log(data)
 
-            // const div = document.getElementById('demo');
-            // const link = document.createElement('a');
+            for(let item in data) {
+                // const title = document.createElement('h5');
+                // title.innerText = `${dataSet.items[item].snippet.title}`;
+                // searchResults.appendChild(title);
+
+                const videoLink = document.createElement('a');
+                videoLink.href = `https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}`;
+                videoLink.innerText = `${dataSet.items[item].snippet.title}`;
+                videoLink.target = '_blank';
+                searchResults.appendChild(videoLink);
+            }
+            // const test = `https://www.youtube.com/watch?v=${dataSet.items[0].id.videoId}`;
             // link.href = test;
-            // link.innerText = "testing testing, is this thing on??"
-
-            // div.appendChild(link);
+            // link.innerText = 'Hello World';
+        
+    
 
             }
         };
