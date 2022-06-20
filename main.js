@@ -61,7 +61,7 @@ submitBtn.addEventListener('click', (e) => {
                     videoDiv.classList.add('result-ctr')
                     videoDiv.innerHTML = `
                         <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
-                            <img src="${dataSet.items[item].snippet.thumbnails.medium.url}">
+                            <img src="${dataSet.items[item].snippet.thumbnails.medium.url}" class="video-thumbnail">
                         </a>
                         <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
                             <h4>${dataSet.items[item].snippet.title}</h4>
