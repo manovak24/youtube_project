@@ -48,6 +48,11 @@ input {
     background-color: #121212;
 }
 
+input[type=text] {
+    background-color: #121212;
+    color: white;
+}
+
 button {
     background-color: #313131;
     color: white;
