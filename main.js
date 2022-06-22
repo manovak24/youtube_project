@@ -40,7 +40,7 @@ submitBtn.addEventListener('click', (e) => {
     
     // YouTube+Data+API%20 most likely will be turned into the search term but will need to look into this more
         const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=rating&q=${youtubeSeachTerm}&maxResults=10&key=${youtubeKey}`;
-        console.log(url)
+        // console.log(url)
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -48,7 +48,7 @@ submitBtn.addEventListener('click', (e) => {
 
                 const dataSet = JSON.parse(xhttp.responseText)
                 const data = dataSet.items;
-                console.log(data)
+                // console.log(data)
 
                 for(let item in data) {
                     // const videoLink = document.createElement('a');
