@@ -17,27 +17,30 @@ a {
     font-weight: 800;
 }
 
+h1 {
+    font-size: 28px;
+    margin-right: 2.5px;
+}
+
 h5 {
     font-weight: 400;
     color: gray;
 }
 
 header {
-    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #202020;
     color: white;
+    padding: 15px 5px;
 }
 
 form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px auto;
-    padding-bottom: 10px;
-    width: 100%;
+    margin-left: 2.5px;
     background-color: #202020;
 }
 
