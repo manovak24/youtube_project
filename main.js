@@ -33,7 +33,7 @@ const timeAgo = (date) => {
     return `${interval} ${epoch}${suffix} ago`;
 };
 
-submitBtn.addEventListener('click', (e) => {
+submitBtn.addEventListener('click', function (e) {
     youtubeSeachTerm = searchTerm.value;
     e.preventDefault();
     // console.log(youtubeSeachTerm)
