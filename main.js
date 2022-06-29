@@ -57,6 +57,8 @@ submitBtn.addEventListener('click', function (e) {
                     // videoLink.target = '_blank';
                     // searchResults.appendChild(videoLink);
 
+                    console.log(data[item]);
+
                     const videoDiv = document.createElement('div');
                     videoDiv.classList.add('result-ctr')
                     videoDiv.innerHTML = `
