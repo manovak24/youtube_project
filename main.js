@@ -3,7 +3,6 @@ const submitBtn = document.getElementById('submit-btn');
 const div = document.getElementById('demo');
 const searchResults = document.querySelector('.search-results');
 const youtubeKey = config.YOUTUBE_API;
-let youtubeSeachTerm = '';
 
 // function to format how the video displays amount of time ago video was posted
 const timeAgo = (date) => {
@@ -15,7 +14,6 @@ const timeAgo = (date) => {
         ['minute', 60],
         ['second', 1]
     ];
-
     const getDuration = (timeAgoInSeconds) => {
         for (let [name, seconds] of epochs) {
             const interval = Math.floor(timeAgoInSeconds / seconds);
@@ -33,32 +31,23 @@ const timeAgo = (date) => {
     return `${interval} ${epoch}${suffix} ago`;
 };
 
+// function for the api request that is used in the event listeners
 const eventHandler = (e) => {
-    youtubeSeachTerm = searchTerm.value;
     e.preventDefault();
-    // console.log(youtubeSeachTerm)
+    // using below to set searchResults to original state with nothing so the eventHandler function and be used more than once. This will clear previous search results when used after first time it is called
+    searchResults.innerHTML = ``;
     
-    // YouTube+Data+API%20 most likely will be turned into the search term but will need to look into this more
+    let youtubeSeachTerm = searchTerm.value;
+    // url below for api query search
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=rating&q=${youtubeSeachTerm}&maxResults=10&key=${youtubeKey}`;
-    // console.log(url)
+
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         // console.log(xhttp.responseText);
-
             const dataSet = JSON.parse(xhttp.responseText)
             const data = dataSet.items;
-            // console.log(data)
-
             for(let item in data) {
-                // const videoLink = document.createElement('a');
-                // videoLink.href = `https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}`;
-                // videoLink.innerText = `${dataSet.items[item].snippet.title}`;
-                // videoLink.target = '_blank';
-                // searchResults.appendChild(videoLink);
-
-                console.log(data[item]);
-
                 const videoDiv = document.createElement('div');
                 videoDiv.classList.add('result-ctr')
                 videoDiv.innerHTML = `
@@ -76,14 +65,13 @@ const eventHandler = (e) => {
                 `
                 searchResults.appendChild(videoDiv);
             }
-
-
         }
     };
     xhttp.open("GET", url, true);
     xhttp.send();
 }
 
+// event listeners for the click and enter key press
 submitBtn.addEventListener('click', eventHandler);
 submitBtn.addEventListener('click', function(e) {
     if(e.key === 'Enter') {
