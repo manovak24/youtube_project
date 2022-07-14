@@ -39,7 +39,7 @@ const eventHandler = (e) => {
     
     let youtubeSeachTerm = searchTerm.value;
     // url below for api query search
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=rating&q=${youtubeSeachTerm}&maxResults=10&key=${youtubeKey}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=rating&q=${youtubeSeachTerm}&maxResults=12&key=${youtubeKey}`;
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
