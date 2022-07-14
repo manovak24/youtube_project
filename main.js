@@ -1,8 +1,11 @@
 const searchTerm = document.getElementById('search-term');
-const submitBtn = document.getElementById('submit-btn');
+const searchForm = document.querySelector('.search-ctr');
 const div = document.getElementById('demo');
 const searchResults = document.querySelector('.search-results');
 const youtubeKey = config.YOUTUBE_API;
+
+// below variable only used if the two click event listeners are used
+// const submitBtn = document.getElementById('submit-btn');
 
 // function to format how the video displays amount of time ago video was posted
 const timeAgo = (date) => {
@@ -71,12 +74,16 @@ const eventHandler = (e) => {
     xhttp.send();
 }
 
-// event listeners for the click and enter key press
-submitBtn.addEventListener('click', eventHandler);
-submitBtn.addEventListener('click', function(e) {
-    if(e.key === 'Enter') {
-        eventHandler();
-    }
-});
+// event listener for the form that will handle both a click event and enter key press event
+searchForm.addEventListener('submit', eventHandler);
+
+
+// event listeners for the button that will fire for the click and enter key press
+// submitBtn.addEventListener('click', eventHandler);
+// submitBtn.addEventListener('click', function(e) {
+//     if(e.key === 'Enter') {
+//         eventHandler();
+//     }
+// });
 
 
