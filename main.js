@@ -49,25 +49,53 @@ const eventHandler = (e) => {
         if (this.readyState == 4 && this.status == 200) {
         // console.log(xhttp.responseText);
             const dataSet = JSON.parse(xhttp.responseText)
-            const data = dataSet.items;
-            for(let item in data) {
+            // dataSet is an object of the data from the api search
+            console.log(dataSet)
+            // dataSet.items is an array of the specific video data needed for dynamic js from the api search
+            console.log(dataSet.items)
+            
+            // below solution works because .forEach() is being used on the array
+            dataSet.items.forEach(function(item) {
+                // console.log(item);
                 const videoDiv = document.createElement('div');
                 videoDiv.classList.add('result-ctr')
                 videoDiv.innerHTML = `
-                    <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
-                        <img src="${dataSet.items[item].snippet.thumbnails.medium.url}" class="video-thumbnail">
+                    <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">
+                        <img src="${item.snippet.thumbnails.medium.url}" class="video-thumbnail">
                     </a>
-                    <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
-                        <h4>${dataSet.items[item].snippet.title}</h4>
+                    <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">
+                        <h4>${item.snippet.title}</h4>
                     </a>
-                    <a href="https://www.youtube.com/c/${dataSet.items[item].snippet.channelTitle}" target="_blank">
-                        <h5>${dataSet.items[item].snippet.channelTitle}</h5>
+                    <a href="https://www.youtube.com/c/${item.snippet.channelTitle}" target="_blank">
+                        <h5>${item.snippet.channelTitle}</h5>
                     </a>
-                    <p class="publish-time">${timeAgo(dataSet.items[item].snippet.publishTime)}</p>
+                    <p class="publish-time">${timeAgo(item.snippet.publishTime)}</p>
                     
                 `
                 searchResults.appendChild(videoDiv);
-            }
+            })
+
+
+
+            // below solution uses the for...in loop to iterate over the array and pull necessary data
+            // for(let item in dataSet.items) {
+            //     const videoDiv = document.createElement('div');
+            //     videoDiv.classList.add('result-ctr')
+            //     videoDiv.innerHTML = `
+            //         <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
+            //             <img src="${dataSet.items[item].snippet.thumbnails.medium.url}" class="video-thumbnail">
+            //         </a>
+            //         <a href="https://www.youtube.com/watch?v=${dataSet.items[item].id.videoId}" target="_blank">
+            //             <h4>${dataSet.items[item].snippet.title}</h4>
+            //         </a>
+            //         <a href="https://www.youtube.com/c/${dataSet.items[item].snippet.channelTitle}" target="_blank">
+            //             <h5>${dataSet.items[item].snippet.channelTitle}</h5>
+            //         </a>
+            //         <p class="publish-time">${timeAgo(dataSet.items[item].snippet.publishTime)}</p>
+                    
+            //     `
+            //     searchResults.appendChild(videoDiv);
+            // }
         }
     };
     xhttp.open("GET", url, true);
